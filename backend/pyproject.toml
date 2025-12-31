@@ -1,0 +1,55 @@
+[project]
+name = "budget-backend"
+version = "0.1.0"
+description = "Local-first budgeting app backend (FastAPI + CSV storage + optional Google Drive sync)."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "pydantic>=2.7.0",
+  "python-dotenv>=1.0.1",
+  "pandas>=2.2.0",
+  "google-api-python-client>=2.140.0",
+  "google-auth>=2.32.0",
+  "google-auth-oauthlib>=1.2.1",
+  "openpyxl>=3.1.5",
+  "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+dev = [
+  "ruff>=0.6.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+  "ruff>=0.6.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# Keep this baseline focused on "high signal" rules:
+# - E/F: pycodestyle + pyflakes
+# - I: import sorting (isort)
+# - B: flake8-bugbear
+# NOTE: We intentionally exclude `pyupgrade` rules by default to avoid
+# mass type-annotation churn (e.g. Optional[X] -> X | None). You can
+# still run them ad-hoc via `ruff check --select UP`.
+select = ["E", "F", "I", "B"]
+
+# Ruff's formatter already enforces line length; disabling E501 avoids duplicate noise.
+# B008 is incompatible with common FastAPI patterns (Depends/Query in default args).
+ignore = ["E501", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+# Package re-exports commonly live in __init__.py files.
+"**/__init__.py" = ["F401"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
+

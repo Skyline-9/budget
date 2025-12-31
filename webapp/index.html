@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget</title>
+
+    <!-- Favicons / App icons -->
+    <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0f0f13" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- #region agent log -->
+    <script>
+      // Very early debug logging
+      window.__DEBUG_LOGS = [];
+      const debugLog = (msg, data) => {
+        const entry = { time: Date.now(), msg, ...data };
+        window.__DEBUG_LOGS.push(entry);
+        console.error("[EARLY_DEBUG]", JSON.stringify(entry));
+        fetch(window.location.origin + "/api/debug-log", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ location: "index.html", message: msg, data: data || {}, hypothesisId: "G" })
+        }).catch(() => {});
+      };
+      
+      debugLog("HTML loaded", { origin: window.location.origin });
+      
+      // Track script loading
+      const scripts = document.querySelectorAll("script[type='module']");
+      debugLog("Module scripts found", { count: scripts.length });
+      
+      window.onerror = (msg, url, line, col, error) => {
+        debugLog("window.onerror", {
+          message: String(msg),
+          url: String(url),
+          line: String(line),
+          col: String(col),
+          error: error ? String(error) : null,
+          stack: error?.stack
+        });
+        return false;
+      };
+      
+      window.addEventListener("unhandledrejection", (e) => {
+        debugLog("unhandledrejection", { reason: String(e.reason) });
+      });
+      
+      // Track when main script loads
+      window.addEventListener("load", () => {
+        debugLog("Window load event fired", {});
+      });
+    </script>
+    <!-- #endregion -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+

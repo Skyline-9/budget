@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@config "../tailwind.config.cjs";
+
+@layer base {
+  :root {
+    /* Design tokens (light) */
+    /* Softer light theme: off-white background to reduce glare */
+    --background: 210 35% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 210 25% 99%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 210 25% 99%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Netflix-ish accent (red), but restrained */
+    --primary: 357 92% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 30% 96.8%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 30% 96.8%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 30% 96.8%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Semantic palette (light) */
+    --income: 160 84% 28%;
+    --income-foreground: 0 0% 100%;
+
+    --expense: 330 81% 45%;
+    --expense-foreground: 0 0% 100%;
+
+    --hero: 262 83% 55%;
+    --hero-foreground: 0 0% 100%;
+
+    --warm: 32 95% 43%;
+    --warm-foreground: 0 0% 100%;
+
+    --warning: var(--primary);
+    --warning-foreground: var(--primary-foreground);
+
+    --info: 200 98% 39%;
+    --info-foreground: 0 0% 100%;
+
+    --danger: 0 72% 51%;
+    --danger-foreground: 0 0% 100%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: var(--primary);
+
+    --radius: 1rem;
+
+    /* Semantic aliases (requested) */
+    --bg: var(--background);
+    --surface: var(--card);
+    --surface-2: var(--secondary);
+    --text: var(--foreground);
+
+    /* Shadows (light) — subtle, Apple-like */
+    --shadow-soft: 0 10px 26px -22px rgba(2, 6, 23, 0.16);
+    --shadow-lift: 0 16px 40px -28px rgba(2, 6, 23, 0.22);
+    --shadow-soft-lg: 0 12px 30px -24px rgba(2, 6, 23, 0.18);
+
+    /* Tint intensity (light): keep very subtle */
+    --tint-alpha-1: 0.06;
+    --tint-alpha-2: 0.10;
+
+    /* Glow palette (RGB triplets, used by corner-glow utilities) */
+    --glow-neutral: 56, 189, 248;
+    --glow-income: 52, 211, 153;
+    --glow-expense: 244, 114, 182;
+    --glow-accent: 246, 40, 50;
+    --glow-hero: 167, 139, 250;
+    /* Background gradient glow (keep warm/amber regardless of brand color) */
+    --glow-warm: 251, 146, 60;
+
+    /* Chart + picker palettes */
+    --palette-chart-categorical: #60a5fa,#a78bfa,#34d399,#fb7185,#fbbf24,#22d3ee,#c084fc,#f472b6,#93c5fd,#86efac;
+    --palette-chart-tableau: #4E79A7,#F28E2B,#E15759,#76B7B2,#59A14F,#EDC948,#B07AA1,#FF9DA7;
+    --palette-category-colors: #ef4444,#f97316,#84cc16,#22c55e,#06b6d4,#3b82f6,#a855f7;
+  }
+
+  .dark {
+    /* Dark-first theme: deep charcoal + subtle contrast (premium) */
+    --background: 240 7% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 7% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 7% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 357 92% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 6% 16%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 6% 16%;
+    --muted-foreground: 215 20% 70%;
+
+    --accent: 240 6% 16%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 70% 46%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Semantic palette (dark) */
+    --income: 160 71% 67%;
+    --income-foreground: 240 7% 7%;
+
+    --expense: 327 73% 90%;
+    --expense-foreground: 240 7% 7%;
+
+    --hero: 258 94% 85%;
+    --hero-foreground: 240 7% 7%;
+
+    --warm: 32 95% 60%;
+    --warm-foreground: 240 7% 7%;
+
+    --warning: var(--primary);
+    --warning-foreground: var(--primary-foreground);
+
+    --info: 198 93% 60%;
+    --info-foreground: 240 7% 7%;
+
+    --danger: 0 93% 81%;
+    --danger-foreground: 240 7% 7%;
+
+    --border: 240 5% 20%;
+    --input: 240 5% 20%;
+    --ring: var(--primary);
+
+    /* Semantic aliases (requested) */
+    --bg: var(--background);
+    --surface: var(--card);
+    --surface-2: var(--secondary);
+    --text: var(--foreground);
+
+    /* Shadows (dark) — cinematic depth */
+    --shadow-soft: 0 10px 24px -18px rgba(0, 0, 0, 0.65),
+      0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+    --shadow-lift: 0 18px 44px -24px rgba(0, 0, 0, 0.78),
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+    --shadow-soft-lg: 0 12px 30px -12px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+
+    /* Tint intensity (dark): a bit richer but still restrained */
+    --tint-alpha-1: 0.12;
+    --tint-alpha-2: 0.18;
+
+    /* Glow palette (same values by default, overridable per-theme if desired) */
+    --glow-neutral: 56, 189, 248;
+    --glow-income: 52, 211, 153;
+    --glow-expense: 244, 114, 182;
+    --glow-accent: 246, 40, 50;
+    --glow-hero: 167, 139, 250;
+    /* Background gradient glow (keep warm/amber regardless of brand color) */
+    --glow-warm: 251, 146, 60;
+
+    /* Chart + picker palettes */
+    --palette-chart-categorical: #60a5fa,#a78bfa,#34d399,#fb7185,#fbbf24,#22d3ee,#c084fc,#f472b6,#93c5fd,#86efac;
+    --palette-chart-tableau: #4E79A7,#F28E2B,#E15759,#76B7B2,#59A14F,#EDC948,#B07AA1,#FF9DA7;
+    --palette-category-colors: #ef4444,#f97316,#84cc16,#22c55e,#06b6d4,#3b82f6,#a855f7;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    text-rendering: geometricPrecision;
+  }
+}
+
+@layer utilities {
+  .surface-gradient {
+    background-image: radial-gradient(
+        1200px 600px at 12% 0%,
+        rgba(var(--glow-warm), 0.10),
+        transparent 55%
+      ),
+      radial-gradient(900px 420px at 86% 10%, rgba(var(--glow-neutral), 0.08), transparent 60%),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Tint classes just define the glow color variable; no background fill.
+     Pair with .corner-glow for the Apple TV–style corner glow overlay. */
+  .tint-neutral { --glow-rgb: var(--glow-neutral); }
+  .tint-income  { --glow-rgb: var(--glow-income); }
+  .tint-expense { --glow-rgb: var(--glow-expense); }
+  .tint-accent  { --glow-rgb: var(--glow-accent); }
+  .tint-hero    { --glow-rgb: var(--glow-hero); }
+  .tint-warm    { --glow-rgb: var(--glow-warm); }
+
+  /* Apple TV–style corner glow overlay: vivid but small so it reads as a "light leak". */
+  .corner-glow {
+    position: relative;
+  }
+  .corner-glow::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(
+      420px 260px at 0% 0%,
+      rgba(var(--glow-rgb, 56, 189, 248), 0.28),
+      transparent 55%
+    );
+  }
+
+  /* Hero variant: larger + more saturated so one card can feel like the "north star". */
+  .corner-glow-hero {
+    position: relative;
+  }
+  .corner-glow-hero::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      radial-gradient(
+        560px 340px at 0% 0%,
+        rgba(var(--glow-rgb, 167, 139, 250), 0.36),
+        transparent 60%
+      ),
+      radial-gradient(
+        520px 320px at 100% 0%,
+        rgba(var(--glow-rgb, 167, 139, 250), 0.16),
+        transparent 62%
+      );
+  }
+
+  /* Hover/focus variant so lists/tables don't constantly glow. */
+  .corner-glow-hover {
+    position: relative;
+  }
+  .corner-glow-hover::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 150ms ease-out;
+    background: radial-gradient(
+      420px 260px at 0% 0%,
+      rgba(var(--glow-rgb, 56, 189, 248), 0.28),
+      transparent 55%
+    );
+  }
+  .corner-glow-hover:hover::before,
+  .corner-glow-hover:focus-visible::before {
+    opacity: 1;
+  }
+}

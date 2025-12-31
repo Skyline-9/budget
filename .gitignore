@@ -1,0 +1,73 @@
+# --- OS / Editor ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+.idea/
+.vscode/
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Env / Secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Python (backend) ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+.venv/
+venv/
+env/
+ENV/
+
+pip-wheel-metadata/
+dist/
+build/
+*.egg-info/
+
+# --- Node / Vite (webapp) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+webapp/dist/
+webapp/.vite/
+webapp/.turbo/
+
+# TypeScript build artifacts
+*.tsbuildinfo
+
+# --- Cursor / tooling ---
+.cursor/
+
+# --- Rust ---
+target/
+
+# --- macOS Build ---
+# Build working directory (contains generated files, PyInstaller output, etc.)
+.mac_build/
+# Final app bundle output
+/dist/
+
+# Swift Package Manager build artifacts
+/macos-app/.build/
+
